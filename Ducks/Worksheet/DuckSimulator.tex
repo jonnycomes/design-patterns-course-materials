@@ -1,0 +1,100 @@
+\documentclass[11pt]{article}
+\pagestyle{empty}
+
+\usepackage{amsmath,amssymb,verbatim,graphicx}
+\usepackage{rotating}
+
+\usepackage{multicol}
+
+\newlength{\up}\setlength{\up}{-\baselineskip}
+\setlength{\textwidth}{6.5in} \setlength{\textheight}{10in}
+\setlength{\topmargin}{-1in} \setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0.5in}
+\parindent12pt
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+
+
+\setlength{\columnsep}{0.25in}
+
+\begin{document}
+
+
+\noindent{\huge Duck Simulator}
+\hfill
+\emph{CSC-490, Winter 2020}
+\blfootnote{\emph{last updated: \today}}
+
+% \vspace{-0.4in}
+
+% \begin{minipage}[b]{0.5\textwidth}
+% \begin{center}
+%   {\huge Duck Simulator}
+% \end{center}
+
+\medskip
+
+For this worksheet you will need the files located in the CoCalc folder \texttt{Quack/DuckSimulator}. This exercise is adapted for C++ from the very similar java program described in ``Head First Design Patterns'' by Freeman \& Robson.
+
+The goal of this worksheet is to practice working with several of the design patterns that we have seen this term. To do so, you will be asked to complete five steps, each of which involves adding a new design pattern to the Duck Simulator program. For each step you need to draw the relevant class diagram and implement the associated code. Each step is worth 20pts (10 for the class diagram and 10 for the implementation). 
+
+\begin{enumerate}
+
+  \item[Step 1.] Use the Adapter pattern to allow a \texttt{Goose} object to act like a \texttt{Quackable} object. After doing so, modify the definition of the variable \texttt{goose} in the file \texttt{DuckSimulator.cpp} and include the \texttt{goose} in the \texttt{flock}. When you're finished with this step, you should see the goose honk when you run the program.
+
+  \item[Step 2.] Create a new class called \texttt{Flock} that can hold a collection of \texttt{Quackable}s. You should be able to add or remove quackers to each flock. Moreover, \texttt{Flock} should have method \texttt{quack()}. When \texttt{quack()} is called on a flock, all the quackers in that flock should quack. Adjust the file \texttt{DuckSimulator.cpp} so that \texttt{flock} has type \texttt{Flock} or \texttt{Flock*}, whichever you think is best. Running the program should not appear any different after this step as long as you include all the same quackers in the flock.
+
+  \item[Step 3.] Create a class called \texttt{QuackCountDecorator} that is a wrapper for \texttt{Quackable}. The purpose of this class is to count the total number of times any wrapped quackers quack. This new decorator class should have a \emph{static} data member \texttt{\_quackCount} and a \emph{static} method \texttt{getQuackCount()}.\footnote{Making the method and data member static will allow us to count the total number of quacks from \emph{all} the wrapped quackers (as opposed to keeping track of each quackers count individually).} The quack count should be updated every time the wrapped quacker quacks. 
+
+  Modify the file \texttt{DuckSimulator.cpp} so that the mallardDuck, redheadDuck, rubberDuck, and duckCall (but not the goose) are all wrapped with a \texttt{QuackCountDecorator}. Add a line to the end of that file that uses the static method in order to print the quack count. You should see the total number of times any wrapped duck quacked (not counting the goose). In other words, if all 5 quackers quack (including the goose), your program should print something like ``4 quacks were counted''.
+
+  \item[Step 4.] Create an \texttt{AbstractDuckFactory} with methods 
+  \texttt{createMallardDuck()}, 
+  \texttt{createRedheadDuck()}, 
+  \texttt{createRubberDuck()}, 
+  \texttt{createDuckCall()}, and
+  \texttt{createGoose()}. Create concrete factories called \texttt{DuckFactory} and \texttt{CountingDuckFactory}. The \texttt{DuckFactory} should create unwrapped quackers, and the \texttt{CountingDuckFactory} should create wrapped quackers (wrapping all but the goose). 
+
+  Add a new data member to \texttt{DuckSimulator} of type \texttt{AbstractDuckFactory*}. Use this factory to create all the quackers in the implementation of \texttt{simulate()}. Get rid of all the unnecessary headers in \texttt{DuckSimulator.cpp}. If your \texttt{DuckSimulator} is pointing to a \texttt{CountingDuckFactory} then running the program should look just like it did after step 3. If it's pointing to the \texttt{DuckFactory} then the quack count should show up 0.
+
+\newpage
+
+  \item[Step 5.] Create a new class called \texttt{Quackologist}. This class should have only one method called \texttt{update(description)}. When \texttt{update(description)} is called the following message should be printed to the terminal: 
+  \begin{center}\begin{verbatim}Quackologist: description just quacked.\end{verbatim}
+  \end{center}
+  Use the Observer pattern with \texttt{Quackologist} playing the role of the concrete observer and \texttt{Quackable} playing the role of the concrete subject (even though \texttt{Quackable} is not concrete!). The Quakologist should be notified whenever any individual quacker quacks. 
+
+  Add a new data member to \texttt{DuckSimulator} of type \texttt{Quackologist} or \texttt{Quackologist*}, whichever you think is better. Be sure to attach the quackologist as an observer to all the individual quackers. When you run your program you should see something like this:
+\begin{verbatim}
+quack
+Quackologist: mallard duck just quacked.
+quack
+Quackologist: redhead duck just quacked.
+squeak
+Quackologist: rubber duck just quacked.
+kwak
+Quackologist: duck call just quacked.
+honk
+Quackologist: goose pretending to be a duck just quacked.
+
+4 quacks were counted.
+\end{verbatim}
+
+
+
+
+  \item[Bonus: ] If your program is complete and has no memory leaks you will get an extra 5 points. Remember that you can check for memory leaks using \texttt{valgrind}.
+
+
+\end{enumerate}
+
+
+
+\end{document}
+

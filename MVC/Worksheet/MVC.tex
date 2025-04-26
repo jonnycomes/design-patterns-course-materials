@@ -1,0 +1,105 @@
+\documentclass[11pt]{article}
+\pagestyle{empty}
+
+\usepackage{amsmath,amssymb,verbatim,graphicx}
+\usepackage{rotating}
+
+\usepackage{multicol}
+
+\newlength{\up}\setlength{\up}{-\baselineskip}
+\setlength{\textwidth}{7.5in} \setlength{\textheight}{10in}
+\setlength{\topmargin}{-1in} \setlength{\oddsidemargin}{-0.5in}
+\setlength{\evensidemargin}{0in}
+\parindent12pt
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+
+
+\setlength{\columnsep}{0.25in}
+
+\begin{document}
+
+
+\noindent\emph{Name:}
+\hfill
+\emph{CSC-490, Winter 2020}
+\blfootnote{\emph{last updated: \today}}
+
+\vspace{-0.4in}
+
+% \begin{minipage}[b]{0.5\textwidth}
+\begin{center}
+  {\huge MVC}
+\end{center}
+
+\medskip
+
+
+
+% In order to complete this worksheet you will need the files located in the folder \texttt{Decorator} in CoCalc.
+
+\begin{enumerate}
+
+    \item (5pts) Write down the roles of the Model, View, and Controller in MVC.
+
+    \vspace{1in}
+
+    \item Consider a simple calculator application. The calculator will have a display and buttons for the ten digits, the four basic arithmetic operations, decimal point, total, and clear. In this example the user will interact directly with the View. 
+
+    \begin{enumerate}
+
+      \item (5pts) Describe the interaction between the user, model, view, and controller.
+
+      \vfill
+
+      \item (5pts) Draw a class diagram for the \texttt{View} of the calculator with a method \texttt{render()}. There should be several concrete \texttt{View} classes (for example every button is a view). Indicate any design patterns that are used. 
+
+      \vfill
+      \vfill
+
+      \item (5pts) Draw a class diagram for the \texttt{View} and the \texttt{Controller} illustrating how to implement the method \texttt{View::click()}. What design pattern is being used here?
+
+      \vfill
+      \vfill
+
+\newpage
+
+      \item (5pts) Explain how the Observer pattern could be used to implement the interaction between the Controller and the Model. How is the view updated when the model changes its data?
+
+      \vfill
+      \vfill
+
+      \item (3pts) How could we extend the application to include an option for a more complicated calculator, such as one that can handle exponent, logs, and trig functions?
+
+      \vspace{0.5in}
+
+    \end{enumerate}
+
+  \item (5pts) When using MVC for web apps, the user interacts with a browser, which in turn will often interact with the Controller (via some router). Draw a diagram showing the order of steps involved in the interaction between the user, browser, controller, view, model, and database. 
+
+  \vfill
+  \vfill
+
+  \item (6pts) Describe each step in your diagram above when a user posts a comment to a webpage.
+
+  \vfill
+  \vfill
+  \vfill
+
+  \item (6pts) Describe each step in your diagram above when a user signs up for an account on a webpage. 
+
+  \vfill
+  \vfill
+  \vfill
+
+\end{enumerate}
+
+
+\end{document}
+

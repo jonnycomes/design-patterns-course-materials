@@ -1,0 +1,208 @@
+\documentclass[11pt]{article}
+\pagestyle{empty}
+
+\usepackage{amsmath,amssymb,verbatim,graphicx}
+\usepackage{rotating}
+
+\usepackage{multicol}
+
+\newlength{\up}\setlength{\up}{-\baselineskip}
+\setlength{\textwidth}{7.5in} \setlength{\textheight}{10in}
+\setlength{\topmargin}{-1in} \setlength{\oddsidemargin}{-0.5in}
+\setlength{\evensidemargin}{0in}
+\parindent12pt
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+
+
+\setlength{\columnsep}{0.25in}
+
+\begin{document}
+
+
+\noindent\emph{Name:}
+\hfill
+\emph{CSC-490, Winter 2020}
+\blfootnote{\emph{last updated: \today}}
+
+% \begin{minipage}[b]{0.5\textwidth}
+\begin{center}
+  {\huge State Pattern}
+\end{center}
+% \end{minipage}
+% \begin{minipage}[b]{0.5\textwidth}
+% \begin{center}
+%   \emph{{\bf Intent:} Defines a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients that use it.}
+% \end{center}
+% \end{minipage}
+
+\medskip
+
+
+
+% \noindent {\bf Directions:}  Read each question carefully 
+%     and justify your work appropriately. 
+%     Your work and answers should be clear and organized.  
+%     Your exam will be graded on both correctness and clarity.  
+%     You are not allowed to use any notes for this exam.  
+% %   Throughout the exam, $p, q$, and $r$ denote statement variables.  
+%     There are 100 points possible on this exam (not including bonus points).
+
+In order to complete this worksheet you will need the files located in the folder \texttt{State} in CoCalc.
+
+\begin{enumerate}
+
+  \item According to the GoF, the intent of the strategy pattern is to \emph{``Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.''}
+
+  \begin{enumerate}
+
+    \item (5pts) Draw the class diagram for the State pattern with a class \texttt{Context} along with an abstract class \texttt{State} having two concrete subclasses \texttt{ConcreteStateA} and \texttt{ConcreteStateB}. This is the same class diagram from the GoF using our class diagram conventions. Leave some space for an extra method in \texttt{State}.
+
+    \vfill
+
+    \item (1pt) Write the pseudocode the GoF gives for the implementation of \texttt{request()} in the space provided below.
+
+    \vspace{0.5in}
+
+    \item (2pts) What is the difference between the State and Strategy patterns?
+
+    \vspace{1in}
+
+    \item (3pts) Modify the class diagram above so that each \texttt{State} is responsible for keeping track of an additional \texttt{State} called \texttt{nextState}. 
+
+    \item (3pts) The pseudocode from part (b) should also be modified so that the Context's state is updated when \texttt{request()} is called. Decorate the diagram above with the new pseudocode.  
+
+    \item (1pt) Implementations of the State pattern often involve heap memory allocation (i.e.~the operator \texttt{new} is used). What do good C++ programmers worry about when using the \texttt{new} operator?
+
+    \vspace{0.5in}
+
+  \end{enumerate}
+
+\newpage
+
+  \item For this problem you are meant to look at the program in the CoCalc folder \texttt{State/Context}. In that file you'll see an example of implementation for the class diagram on the front of this worksheet. You will be asked to give line numbers of the code, so don't add any new lines of code (at least, wait until you are done answering the questions). When I ask for a line number, your answer should be something like ``line 3 in State.h''.
+
+  \begin{enumerate}
+
+    \item (2pts) When a Context object is instantiated, what is its initial state? What line number determines the initial state?
+
+    \vfill
+
+    \item (1pt) If at some point a Context object is in state A, what will its state be after \texttt{request()} is called? 
+
+    \vfill
+
+    \item (1pt) Suppose that you want the following to be true: if a Context object is in state B, then it will remain in state B after \texttt{request()} is called. What line number would you need to modify?
+
+    \vfill
+
+    \item (2pts) Why is the data member \texttt{\_nextState} in \texttt{State} protected as opposed to private? What line(s) of code in what file(s) would lead to compile time errors if it was private?
+
+    \vfill
+
+    \item (2pts) Which class is cleaning up memory leaks? Which specific lines are removing memory leaks? You can check if these lines are really handling memory leaks by commenting them out, compiling the code\footnote{Compile command: \texttt{c++ -std=c++11 -Wall -o context *.cpp}}, and then running the program with valgrind\footnote{Then run with: \texttt{valgrind ./context}}.
+
+    \vfill
+
+  \end{enumerate}
+
+\newpage
+
+  \item For this problem you will need to look inside the folder in CoCalc called \texttt{State/Mario}.
+
+  \begin{enumerate}
+
+    \item (5pts) Draw a class diagram for the program in the Mario folder. For each class, leave enough space for one extra method to be added later. You'll also want to leave enough space to add one more concrete state later.
+
+    \vfill
+
+    \item (5pts) The program uses the State pattern. What are playing the roles of the following:
+
+    \begin{enumerate}
+      \item \texttt{Context}:
+      \medskip
+      \item The abstract state:
+      \medskip
+      \item Concrete states:
+      \medskip
+      \item \texttt{request()}:
+      \medskip
+      \item \texttt{handle()}:
+    \end{enumerate}
+
+    \item (5pts) Include a new method called \texttt{powerDown()} in all the classes in your class diagram (are any abstract?). Calling the power down method on Mario should change his state from Big to Small, and Small to Dead. That means you'll need to add a new concrete Mario state to your diagram too. 
+
+    \item (15pts) Implement the power down method in the code provided in CoCalc. To do so you should add \texttt{powerDown()} methods to multiple files\footnote{To keep things organized you should put implementations of all the \texttt{powerDown()} methods in the .cpp files, and just declare those methods in the .h files}. You'll also need to add a new .cpp file and .h file for the new concrete Dead Mario state. I'll leave it to you to choose how a dead Mario powers up or down.
+
+  \end{enumerate}
+
+\newpage
+
+
+  \item Consider the following program that uses the State strategy: 
+
+  \begin{itemize}
+
+    \item There is a class \texttt{H2O} that has a data member called \texttt{temperature} and a (setter) method called\newline \texttt{setTemperature()}.
+
+    \item \texttt{H2O} has a \texttt{H2OState} which can be one of \texttt{SolidH2OState}, \texttt{LiquidH2OState}, or \texttt{GasH2OState}.
+
+    \item Each state has a method called \texttt{handleTemperatureChange()} that handles temperature change (i.e.~handles the setter in \texttt{H2O}).
+
+    \item \texttt{SolidH2OState} has a method \texttt{melt()}.
+
+    \item \texttt{LiquidH2OState} has methods \texttt{freeze()} and \texttt{evaporate()}.
+
+    \item \texttt{GasH2OState} has a method \texttt{condense()}.
+
+  \end{itemize} 
+
+  \begin{enumerate} 
+
+    \item (10pts) Draw a class diagram for the program.
+
+    \vfill
+
+  \newpage
+
+    \item (2pts) Which of the methods should have parameters and what parameters should they have?
+
+    \vspace{1in}
+
+    \item (3pts) Write pseudocode for the implementation of \texttt{setTemperature()} in the space below.
+
+    \vspace{1in}
+
+    \item (5pts each) Write pseudocode for the implementation of \texttt{handleTemperatureChange()} in each of the concrete states. In addition to indicating how to set the \text{nextState}, your pseudocode should indicate when methods like \texttt{melt()}, \texttt{freeze()}, etc.~will be called. 
+
+    \begin{enumerate}
+
+      \item \texttt{SolidH2OState}:
+
+      \vfill
+
+      \item \texttt{LiquidH2OState}:
+
+      \vfill
+
+      \item \texttt{GasH2OState}:
+
+      \vfill
+
+    \end{enumerate}
+
+      \item If you have extra time, you should try to implement your design in C++.
+
+  \end{enumerate}
+
+\end{enumerate}
+
+
+\end{document}
+

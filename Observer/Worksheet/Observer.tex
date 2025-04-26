@@ -1,0 +1,120 @@
+\documentclass[11pt]{article}
+\pagestyle{empty}
+
+\usepackage{amsmath,amssymb,verbatim,graphicx}
+\usepackage{rotating}
+
+\usepackage{multicol}
+
+\newlength{\up}\setlength{\up}{-\baselineskip}
+\setlength{\textwidth}{7.5in} \setlength{\textheight}{10in}
+\setlength{\topmargin}{-1in} \setlength{\oddsidemargin}{-0.5in}
+\setlength{\evensidemargin}{0in}
+\parindent12pt
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+
+
+\setlength{\columnsep}{0.25in}
+
+\begin{document}
+
+
+\noindent\emph{Name:}
+\hfill
+\emph{CSC-490, Winter 2020}
+\blfootnote{\emph{last updated: \today}}
+
+% \begin{minipage}[b]{0.5\textwidth}
+\begin{center}
+  {\huge Observer Pattern}
+\end{center}
+% \end{minipage}
+% \begin{minipage}[b]{0.5\textwidth}
+% \begin{center}
+%   \emph{{\bf Intent:} Defines a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients that use it.}
+% \end{center}
+% \end{minipage}
+
+\medskip
+
+
+
+% \noindent {\bf Directions:}  Read each question carefully 
+%     and justify your work appropriately. 
+%     Your work and answers should be clear and organized.  
+%     Your exam will be graded on both correctness and clarity.  
+%     You are not allowed to use any notes for this exam.  
+% %   Throughout the exam, $p, q$, and $r$ denote statement variables.  
+%     There are 100 points possible on this exam (not including bonus points).
+
+In order to complete this worksheet you will need the files located in the folder \texttt{Observer} in CoCalc.
+
+\begin{enumerate}
+
+  \item  
+
+  \begin{enumerate}
+
+    \item (2pts) Copy down the intent of the Observer pattern according to the GoF:
+
+    \vspace{1in}
+
+    \item (8pts) Draw the class diagram for the Observer pattern given by the GoF (including pseudocode) using our conventions for class diagrams. 
+
+    \vfill
+
+    \item (10pts) In Cocalc you'll find a partial implementation of the class diagram above in the folder \newline\texttt{Observer/Subject}. Your job is to complete the implementation by completing all of the commented TODOs. When you're done, run the program and see if the watcher's state changes when you change the tower's state.
+
+  \end{enumerate}
+
+\newpage
+
+  \item (15pts) In this exercise we will use the Observer pattern to design a program simulating a group chat. Here's the setup:
+    \begin{itemize}
+      \item There is a class \texttt{GroupChat} that has a data member \texttt{conversation} that holds the the conversation of a group chat as a string. This class also has methods called \texttt{getConversation()} and \newline
+      \texttt{addToConversation(message)}.
+      \item There is another class called \texttt{GroupChatMember} that has its own \texttt{conversation} and it also has a \texttt{GroupChat}. The class \texttt{GroupChatMember} has methods \texttt{postMessage()}, \texttt{viewGroupConversation()}, \newline
+      \texttt{leaveGroupChat()}, and maybe others.
+    \end{itemize}
+
+  Draw a class diagram for this program using the Observer pattern. Include pseudocode for all of the methods in the concrete subject and concrete observer classes. If you are unclear as to what any of the methods are supposed to do, ask!
+
+  \vfill
+
+\newpage
+
+  \item Note: you need to have part 1 completed before you complete this part.
+
+  In the CoCalc folder \texttt{Observer/H2O} you'll find a program that partially implements the State pattern with the \texttt{H2O} class that we discussed in the previous worksheet. There are a couple new classes called \texttt{Temperature} and \texttt{WeatherStation}.
+
+  \begin{enumerate}
+
+    \item (5pts) Draw the class diagram for the current state of the program, but leave room since we will be adding more to it. 
+
+    \item (5pts) Modify your diagram using the Observer pattern so that the \texttt{H2O} class is a concrete observer of the concrete subject \texttt{WeatherStation}. 
+
+    \vfill
+
+    \item (10pts) Implement the \texttt{handleTemperatureChange()} methods in the Liquid and Gas states. The implementation in the Solid state is already done. You can modify the \texttt{Main.cpp} file to check that your implementation is correct. 
+
+    \item (10pts) Implement the Observer pattern described above so that the \texttt{H2O} class updates its temperature (by calling \texttt{setTemperature()}) whenever its weather station sends a notification. You can reuse the implementations of the classes \texttt{Subject} and \texttt{Observer} from part 1 here. 
+
+    \item (10pts) Rewrite \texttt{Main.cpp} so that the user can repeatedly update the temperature of a weather station, and after doing so the weather station notifies an \texttt{H2O} object. If everything is hooked up correctly, after each update you should see the water appropriately freezing, melting, evaporating, etc. according to the user's inputs.
+
+
+
+  \end{enumerate}
+
+
+\end{enumerate}
+
+
+\end{document}
+

@@ -1,0 +1,83 @@
+\documentclass[11pt]{article}
+\pagestyle{empty}
+
+\usepackage{amsmath,amssymb,verbatim,graphicx}
+\usepackage{rotating}
+
+\usepackage{multicol}
+
+\newlength{\up}\setlength{\up}{-\baselineskip}
+\setlength{\textwidth}{7.5in} \setlength{\textheight}{10in}
+\setlength{\topmargin}{-1in} \setlength{\oddsidemargin}{-0.5in}
+\setlength{\evensidemargin}{0in}
+\parindent12pt
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+
+
+\setlength{\columnsep}{0.25in}
+
+\begin{document}
+
+
+\noindent\emph{Name:}
+\hfill
+\emph{CSC-490, Winter 2020}
+\blfootnote{\emph{last updated: \today}}
+
+\vspace{-0.4in}
+
+% \begin{minipage}[b]{0.5\textwidth}
+\begin{center}
+  {\huge Facade Pattern}
+\end{center}
+
+\medskip
+
+
+
+% In order to complete this worksheet you will need the files located in the folder \texttt{Decorator} in CoCalc.
+
+\begin{enumerate}
+
+    \item (2pts) Copy down the intent of the Facade pattern from the Gang of Four:
+
+    \vspace{0.5in}
+
+    \item (10pts) Draw a before-and-after class diagram (without details) illustrating how the Facade pattern can be used. 
+
+    \vfill
+    \vfill
+    \vfill
+
+    \item Read the Applicability and Consequences sections of the Gang of Four's treatment of the Facade pattern. Your answers to the following should be based on that reading.
+
+    \begin{enumerate}
+
+      \item (5pts) What do you think is the main benefit of the Facade pattern from the client's point of view?
+
+      \vfill
+
+      \item (5pts) What do you think is the main benefit of the Facade pattern from the programmer of the subsystem's point of view?
+
+      \vfill
+
+    \end{enumerate}
+
+
+    \item (5pts) Which SOLID design principle does the Facade pattern violate most egregiously? Why?
+
+    \vfill
+ 
+
+\end{enumerate}
+
+
+\end{document}
+

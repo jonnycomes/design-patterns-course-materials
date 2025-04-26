@@ -1,0 +1,176 @@
+\documentclass[11pt]{article}
+\pagestyle{empty}
+
+\usepackage{amsmath,amssymb,verbatim,graphicx}
+\usepackage{rotating}
+
+\usepackage{multicol}
+
+\newlength{\up}\setlength{\up}{-\baselineskip}
+\setlength{\textwidth}{7.5in} \setlength{\textheight}{10in}
+\setlength{\topmargin}{-1in} \setlength{\oddsidemargin}{-0.5in}
+\setlength{\evensidemargin}{0in}
+\parindent12pt
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+
+
+\setlength{\columnsep}{0.25in}
+
+\begin{document}
+
+
+\noindent\emph{Name:}
+\hfill
+\emph{CSC-490, Winter 2020}
+\blfootnote{\emph{last updated: \today}}
+
+\vspace{-0.4in}
+
+% \begin{minipage}[b]{0.5\textwidth}
+\begin{center}
+  {\huge Factory Method Pattern}
+\end{center}
+
+\medskip
+
+
+
+% In order to complete this worksheet you will need the files located in the folder \texttt{Decorator} in CoCalc.
+
+\begin{enumerate}
+
+  \item  A \emph{factory} refers to a method or class whose (single) purpose is to create objects. 
+  For example, suppose we have an abstract class \texttt{Pet} with lots of concrete subclasses \texttt{PetDog}, \texttt{PetCat}, \texttt{PetFish}, \texttt{PetSnake}, etc. Each pet has a data member \texttt{name}.
+
+  \begin{enumerate}
+
+    \item (2pts) Draw a class diagram for the classes described above. Leave some room.
+    \item (4pts) In the CoCalc folder \texttt{FactorMethod/PetFactory} you'll find the code for a class called \texttt{PetFactory}. Add this class to your diagram. Use dashed lines with arrows pointing from the factory class to any classes whose objects the factory creates (we'll call these ``creates-a arrows'').
+
+    \vfill
+
+    \item (2pts) Which class is a factory? Which method is a factory?
+
+    \vspace{0.5in}
+
+    \item (2pts) In this example the factory method is static, which is not uncommon (however not all factory methods are static!). How do you call the factory method in order to create a pet called \texttt{pet}?
+
+    \vspace{0.5in}
+
+  \end{enumerate}
+
+  \item Suppose a class \texttt{A} is a factory that creates objects of type \texttt{B}.
+
+  \begin{enumerate}
+
+    \item (2pts) Draw the associated class diagram.
+
+    \vspace{0.5in}
+
+    \item (3pts) Which of the classes must be concrete, and why?
+
+    \vspace{0.5in}
+
+    \item (2pts) Draw a class diagram with abstract classes \texttt{AbstractA} and \texttt{AbstractB}, and derived concrete classes \texttt{ConcreteA} and \texttt{ConcreteB}. Add a creates-a arrow from the appropriate A to B.
+
+    \vspace{1in}
+
+\newpage
+
+
+  \end{enumerate}
+
+
+  \item The following example is taken (and only slightly modified) from the book ``Head First Design Patterns''.
+
+  \begin{itemize}
+    \item There is a class \texttt{Pizza} with a string data member \texttt{type}. This class also has methods \texttt{prepare()}, \texttt{bake()}, \texttt{cut()}, and \texttt{box()}. 
+    \item There is a class \texttt{PizzaStore} that has a method \texttt{Pizza* orderPizza(type)}. In order to implement that method, the pizza store must create a new pizza of the appropriate type and then prepare, bake, cut, and box the pizza before returning it. Since the pizza store needs to create pizzas, it should have a factory method. However, each concrete pizza store will create different pizzas, so the factory method in \texttt{PizzaStore} should be abstract. 
+    \item Pick your favorite two pizza places and make them into two concrete classes. If you don't have two favorites, you can use mine: \texttt{NorthEndPizzaStore} and \texttt{FlyingPiePizzaStore}. These concrete pizza stores know how to create pizzas. In particular, one can create a \texttt{NorthEndCheesePizza} and a \texttt{NorthEndPepperoniPizza} while the other can create a \texttt{FlyingPieCheesePizza} and a \newline\texttt{FlyingPiePepperoniPizza}. 
+
+  \end{itemize}
+
+  \begin{enumerate}
+
+    \item (10pts) Draw a class diagram for this story. Be sure to include all the appropriate creates-a arrows.
+
+    \item (5pts) Include pseudocode for the concrete factory methods and the method \texttt{orderPizza(type)}.
+
+  \end{enumerate}
+
+\newpage
+
+  \item 
+
+  \begin{enumerate} 
+
+    \item (5pts) Draw the class diagram for the Factory Method pattern involving the classes \texttt{Product}, \texttt{Creator}, \texttt{ConcreteProduct}, and \texttt{ConcreteCreator}.
+
+    \vfill
+
+    \item (4pts) Which classes from the Pizza example are playing the various roles in the Factory Method Pattern?
+    \medskip 
+
+    Abstract Product:
+    \medskip 
+
+    Concrete Product(s):
+    \medskip
+
+    Abstract Creator:
+    \medskip
+
+    Concrete Creator(s):
+    \medskip
+
+  \end{enumerate}
+
+  \item (5pts) Draw the class diagram for the motivating example of the Factory Method pattern from the GoF (i.e.~the example with Document and Application classes). Use our conventions for class diagrams.
+
+  \vfill
+
+\newpage
+
+  \item For this problem you will need the code in the CoCalc folder \texttt{FactoryMethod/ThreeLittlePigs}. 
+
+  \begin{enumerate}
+
+    \item (5pts) Draw a class diagram for the program.
+
+    \vfill
+    \vfill
+
+    \item (5pts) Which classes are playing the various roles in the Factory Method Pattern?
+    \medskip 
+
+    Abstract Product:
+    \medskip 
+
+    Concrete Product(s):
+    \medskip
+
+    Abstract Creator:
+    \medskip
+
+    Concrete Creator(s):
+    \medskip
+
+    Not part of the Factory Method Pattern:
+    \medskip
+
+    \item (15pts) The program does not currently work. To get it working you need to complete the five commented TODO steps in the files. You should start with TODO 0, located in \texttt{Pig.cpp}. The other 4 TODOs are to implement the 4 concrete factory methods in the program. When you're done, running the program should allow you to enter either 1, 2, or 3 and see the story play out. 
+
+  \end{enumerate}
+
+\end{enumerate}
+
+
+\end{document}
+

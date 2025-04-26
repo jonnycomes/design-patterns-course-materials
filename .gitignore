@@ -1,0 +1,40 @@
+# Ignore course material directories anywhere in the repo
+**/Syllabus/
+**/Quizzes/
+**/Sandbox/
+**/CourseEvals/
+**/Solution/
+**/FinalPresentation/
+**/test*/
+
+# C++ specific ignores
+*.o
+*.obj
+*.so
+*.exe
+*.out
+*.a
+*.lib
+*.dll
+
+# Ignore build directories
+/build/
+/bin/
+/dist/
+
+# Ignore LaTeX build artifacts
+*.aux
+*.log
+*.toc
+*.lof
+*.lot
+*.fls
+*.out
+*.fdb_latexmk
+*.synctex.gz
+
+# Ignore backup and temporary files
+*~
+*.swp
+.DS_Store
+Thumbs.db

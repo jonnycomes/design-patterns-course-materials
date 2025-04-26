@@ -1,0 +1,181 @@
+\documentclass[11pt]{article}
+\pagestyle{empty}
+
+\usepackage{amsmath,amssymb,verbatim,graphicx}
+\usepackage{rotating}
+
+\usepackage{multicol}
+
+\newlength{\up}\setlength{\up}{-\baselineskip}
+\setlength{\textwidth}{7.5in} \setlength{\textheight}{10in}
+\setlength{\topmargin}{-1in} \setlength{\oddsidemargin}{-0.5in}
+\setlength{\evensidemargin}{0in}
+\parindent12pt
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+
+
+\setlength{\columnsep}{0.25in}
+
+\begin{document}
+
+
+\noindent\emph{Name:}
+\hfill
+\emph{CSC-490, Winter 2020}
+\blfootnote{\emph{last updated: \today}}
+
+\vspace{-0.4in}
+
+% \begin{minipage}[b]{0.5\textwidth}
+\begin{center}
+  {\huge Decorator Pattern}
+\end{center}
+
+\medskip
+
+
+
+% In order to complete this worksheet you will need the files located in the folder \texttt{Decorator} in CoCalc.
+
+\begin{enumerate}
+
+  \item You are tasked with modeling the checkout procedure for an online store. In particular, you need to design a program that computes the total costs for customers' purchases. To get started, you should have a class \texttt{Checkout} that has a method \texttt{getTotalCost()}. You should have another class \texttt{SubtotalCost} that has a method \texttt{getCost()} returning the cost of the purchase before accounting for any additional costs such as those from taxes or shipping. To account for those additional costs, your boss tells you to follow the SOLID design principles and create two separate classes, one to handle the costs from taxes, and one for the costs from shipping. 
+
+  \begin{enumerate}
+
+    \item (2pts) Which SOLID design principle is your boss referring to?
+    \vspace{0.2in}
+
+    \item (4pts) Draw a class diagram involving the classes described above, and any others that you want, that could be implemented to compute the total cost for a purchase. Your model does not need to handle the computation of the subtotal cost. Instead, just focus on how to relate the \texttt{SubtotalCost} class with the others that handle costs from taxes and shipping. Include pseudocode for the implementation of \texttt{Checkout::getTotalCost()}.
+
+    \vfill
+
+    \item (4pts) Now you need to extend your design to allow for coupons. In particular, you need to implement a \fbox{\$1 OFF} coupon and a \fbox{10\% OFF} coupon. Customers are allowed to apply these coupons in any order they choose, and it is possible to apply multiple coupons of the same type. For instance if the subtotal cost is \$21 then the customer could first apply a \fbox{\$1 OFF} to bring the cost to \$20, then a \fbox{10\% OFF} to get to \$18, and finally another \fbox{\$1 OFF} to get to \$17. Of course, the smart customer with those three coupons would first apply the \fbox{10\% OFF} followed by the two \fbox{\$1 OFF}'s to get the pre-tax, pre-shipping cost from \$21 to \$17.90. Update your class diagram to include classes for these two types of coupons. 
+
+\newpage
+
+    \item (4pts) Draw a class diagram for the program in the CoCalc folder \texttt{Decorator/Coupons}. 
+
+    \vfill
+
+    \item (3pts) Which design (yours or the one in CoCalc) is better in terms of the Single Responsibility Principle? Explain.
+
+    \vspace{1in}
+
+    \item (3pts) Extend the class diagram above by adding classes \texttt{DollarOffDecorator} and a \newline\texttt{TenPercentOffDecorator} appropriately. 
+
+    \item (3pts)  Which design (yours or the one in CoCalc) is better in terms of the Open-Closed Principle? Explain.
+
+    \vspace{1in}
+
+    \item (10pts) Implement the classes \texttt{DollarOffDecorator} and \texttt{TenPercentOffDecorator} into the program in CoCalc. As usual, you can check that your program is setup correctly by playing with \texttt{Main.cpp}.
+
+  \end{enumerate}
+
+\newpage  
+
+  \item  
+
+  \begin{enumerate}
+
+    \item (2pts) Copy down the \emph{intent} of the Decorator pattern according to the GoF:
+
+    \vspace{1in}
+
+    \item (4pts) Draw the class diagram for the Decorator pattern discussed in class.
+
+    \vfill
+
+    \item (2pts) What is the (single) responsibility of the \texttt{Decorator} class?
+
+    \vspace{1in}
+
+    \item (2pts) How can a concrete decorator add behavior to its inner-component? 
+
+    \vspace{1in}
+
+    \item (2pts) Can a concrete decorator replace its inner-component's behavior with some entirely new behavior? Explain.
+
+    \vspace{1in}
+
+
+  \end{enumerate}
+
+\newpage
+
+  \item Consider the Mario program from our discussion of the State Pattern. We can use the Decorator pattern to allow Mario to have extra abilities. For example, Mario can power up with a flower to get into a \texttt{FireMarioState} which gives Mario the ability to shoot fire; or Mario can power up with a $\bigstar$ to get into an \texttt{InvincibleMarioState} where taking a hit does no damage to Mario. 
+
+  \begin{enumerate}
+
+    \item (5pts) Draw the class diagram for the Mario program with the addition of \texttt{MarioState} decorators. Include (at least) the two decorators described above. 
+
+    \vfill
+
+    \item (5pts) Explain why the Decorator pattern is appropriate here. In particular, why is it better to say \texttt{FireMarioState} (or \texttt{InvincibleMarioState}) is a \texttt{MarioStateDecorator}  as opposed simply saying it is a \texttt{MarioState}?
+
+    \vspace{2.5in}
+
+
+  \end{enumerate}
+
+\newpage
+
+  \item Consider the following program that makes use of the Decorator pattern:
+
+  \begin{itemize}
+
+    \item There is a class \texttt{Message} with an abstract method \texttt{print()}.
+
+    \item There is a concrete subclass of \texttt{Message} called \texttt{SimpleMessage} which has a data member that holds a message as a string. 
+
+    \item There are two concrete message decorators called \texttt{Subject} and \texttt{Signature}. Both of these classes have string data members that hold the subject/signature for a message. 
+
+  \end{itemize} 
+
+  \begin{enumerate}
+
+  \item (5pts) Draw a class diagram for the program described above.
+
+  \vfill
+
+  \item (10pts) Implement this program in the CoCalc folder \texttt{Decorator/Message} by completing all of the TODO items in that folder. You should only have to modify the following files: 
+  \begin{center}
+  \texttt{MessageDecorator.h}\quad \texttt{MessageDecorator.cpp}\quad \texttt{Subject.cpp}\quad  \texttt{Signature.cpp}
+  \end{center} 
+  When you're done, running the program should produce something like the following in the terminal:
+
+\begin{verbatim}
+---------------------------
+Subject: (none)
+---------------------------
+
+Hello World!
+
+From: 
+Anonymous
+
+---------------------------
+Subject: wrappers
+---------------------------
+
+A decorator is a wrapper, but not all wrappers are decorators.
+
+From: 
+Dr. Comes
+MAPS Department
+The College of Idaho
+\end{verbatim}
+
+  \end{enumerate}
+\end{enumerate}
+
+
+\end{document}
+

@@ -1,0 +1,168 @@
+\documentclass[11pt]{article}
+\pagestyle{empty}
+
+\usepackage{amsmath,amssymb,verbatim,graphicx}
+\usepackage{rotating}
+\usepackage{multicol}
+\usepackage{tcolorbox}
+
+\newlength{\up}\setlength{\up}{-\baselineskip}
+\setlength{\textwidth}{7.5in} \setlength{\textheight}{10in}
+\setlength{\topmargin}{-1in} \setlength{\oddsidemargin}{-0.5in}
+\setlength{\evensidemargin}{0in}
+\parindent12pt
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+
+
+\setlength{\columnsep}{0.25in}
+
+\begin{document}
+
+
+\noindent\emph{Name:}
+\hfill
+\emph{CSC-490, Winter 2020}
+\blfootnote{\emph{last updated: \today}}
+
+\vspace{-0.4in}
+
+% \begin{minipage}[b]{0.5\textwidth}
+\begin{center}
+  {\huge Singleton}
+\end{center}
+
+\medskip
+
+
+
+% In order to complete this worksheet you will need the files located in the folder \texttt{Decorator} in CoCalc.
+
+\begin{enumerate}
+
+  \item (2pts) What is the intent of the Singleton?
+
+  \vspace{0.75in}
+
+  \item Consider the following implementation of the Singleton:
+
+  \begin{minipage}[b]{0.45\textwidth}
+\begin{tcolorbox}[title=Singleton.h]
+  \begin{verbatim}
+class Singleton {
+private:
+  static Singleton* _instance;
+  int _data;
+protected:
+  Singleton();
+public:
+  static Singleton* getInstance();
+  int getData();
+  void setData(int);
+};
+\end{verbatim}
+\end{tcolorbox}
+\end{minipage}
+% second column
+\indent
+\begin{minipage}[b]{0.5\textwidth}
+\begin{tcolorbox}[title=Singleton.cpp]
+  \begin{verbatim}
+#include "Singleton.h"
+
+Singleton::Singleton() {}
+
+Singleton* Singleton::_instance = nullptr;
+
+Singleton* Singleton::getInstance() {
+  if(_instance == nullptr) {
+    _instance = new Singleton();
+  }
+  return _instance;
+}
+//data getter and setter below...
+\end{verbatim}
+\end{tcolorbox}
+\end{minipage}
+
+\begin{enumerate}
+
+  \item (3pts) Draw the class diagram for the program.
+
+  \vfill
+
+  \item (3pts) Assume we are working within a cpp file which has \texttt{\#include "Singleton.h"}. Which of the following lines of code will produce a compile time error? Why?
+  \medskip
+
+  \texttt{Singleton s1;}
+  \medskip
+
+  \texttt{Singleton* s2 = new Singleton();}
+  \medskip
+
+  \texttt{Singleton* s3 = Singleton::getInstance();}
+  \medskip
+
+  \item (2pts) Why is the data member \texttt{\_instance} declared static?
+
+  \vspace{0.7in}
+
+\newpage
+
+  \item (4pts) How many times can the constructor of the Singleton class be executed in a program? Why?
+
+  \vspace{1.7in}
+
+
+  \item (4pts) What will the following program print to the terminal?
+
+  \begin{minipage}[b]{0.5\textwidth}
+  \begin{tcolorbox}[title=Main.cpp]
+  \begin{verbatim}
+#include "Singleton.h"
+#include <iostream>
+
+int main() {
+  Singleton* s = Singleton::getInstance();
+  s->setData(7);
+  std::cout << s->getData() << "\n";
+  Singleton* t = Singleton::getInstance();
+  t->setData(12);
+  std::cout << t->getData() << "\n";
+  std::cout << s->getData() << "\n";
+}
+\end{verbatim}
+\end{tcolorbox}
+\end{minipage}
+ 
+\end{enumerate}
+
+\item Is the Singleton an \emph{Anti-pattern}?
+
+\begin{enumerate}
+
+  \item (2pts) What is an anti-pattern?
+
+  \vspace{0.5in}
+
+  \item (2pts) Why do many people consider the Singleton to be an anti-pattern?
+
+  \vspace{0.5in}
+
+  \item (6pts) List as many reasons as you can think of (or find in any resource) as to why global states/variables are evil. Include something about testing software. 
+
+  \vfill
+
+\end{enumerate}
+
+\end{enumerate}
+
+
+\end{document}
+

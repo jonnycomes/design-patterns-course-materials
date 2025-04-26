@@ -1,0 +1,148 @@
+\documentclass[11pt]{article}
+\pagestyle{empty}
+
+\usepackage{amsmath,amssymb,verbatim,graphicx}
+\usepackage{rotating}
+
+\usepackage{multicol}
+
+\newlength{\up}\setlength{\up}{-\baselineskip}
+\setlength{\textwidth}{7.5in} \setlength{\textheight}{10in}
+\setlength{\topmargin}{-1in} \setlength{\oddsidemargin}{-0.5in}
+\setlength{\evensidemargin}{0in}
+\parindent12pt
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+
+
+\setlength{\columnsep}{0.25in}
+
+\begin{document}
+
+
+\noindent\emph{Name:}
+\hfill
+\emph{CSC-490, Winter 2020}
+\blfootnote{\emph{last updated: \today}}
+
+\vspace{-0.4in}
+
+% \begin{minipage}[b]{0.5\textwidth}
+\begin{center}
+  {\huge Adapter Pattern}
+\end{center}
+
+\medskip
+
+
+
+% In order to complete this worksheet you will need the files located in the folder \texttt{Decorator} in CoCalc.
+
+\begin{enumerate}
+
+  \item (10pts)  Suppose you have an abstract class \texttt{BoxOffice} that has methods \texttt{sellFilmTicket(film)} and  \newline\texttt{getTotalSales(film)}. This class is currently being used by a client for some important reason. In particular, modifying its interface would be costly. You also have a \texttt{BoxOfficeFactory} with a static factory method \texttt{createBoxOffice(type)} which creates various \texttt{ConcreteBoxOffice}'s.
+
+ Now, another client comes along and requests an abstract class called \texttt{TicketOffice} with methods \newline \texttt{sellMovieTicket(movie)} and \texttt{getTotalRevenue(movie)}. This second client is not willing to rename the class or the methods (maybe they already started working on other classes that rely on \texttt{TicketOffice}, or maybe they're just stubborn). The client would also like a \texttt{TicketOfficeFactory} with a static factory method \texttt{createTicketOffice(type)} 
+
+ At this point you are stuck with two different interfaces that essentially serve the same purpose. Find a way to implement a \texttt{ConcreteTicketOffice} without duplicating the implementation of methods in the \texttt{ConcreteBoxOffice}'s. Your solution cannot involve modifying the classes described in the previous paragraphs. In particular, you are not allowed to rename anything, or add/remove any new methods or data members to the classes in the previous paragraphs.
+ Draw a class diagram for your solution. Include pseudocode for \texttt{createTicketOffice(type)}  and all the methods in \texttt{ConcreteTicketOffice}.
+
+ \vfill
+
+\newpage 
+
+  \item 
+
+  \begin{enumerate}
+
+    \item (2pts) Copy down the intent of the Adapter pattern from the Gang of Four:
+
+    \vspace{0.5in}
+
+    \item (5pts) Draw the class diagram for the (object) Adapter pattern from the Gang of Four:
+
+    \vfill
+    \vfill
+
+  \end{enumerate}
+
+  \item An adapter is sometimes called a \emph{wrapper}.
+
+  \begin{enumerate}
+
+    \item (2pts) What other design pattern that we've seen is also called a wrapper?
+
+    \vspace{0.5in}
+
+    \item (4pts) How is the Adapter pattern similar to your answer from part (a)?
+
+    \vfill
+
+    \item (4pts) How is the Adapter pattern different than your answer from part (a)?
+
+    \vfill
+
+  \end{enumerate}
+
+\newpage
+
+  \item Consider an abstract class \texttt{OldClass} with methods \texttt{method1()}, \texttt{method2()}, and \texttt{method3()}. There is also a \texttt{ConcreteOldClass} where these methods are implemented. There are three types of clients for the abstract class. The first type \texttt{ClientA} only uses methods 1 and 2; the second type \texttt{ClientB} only uses method 3; and finally \texttt{ClientC} that make use of all three methods. 
+
+  \begin{enumerate}
+    \item (2pts) Which SOLID design principle tells you that you should split \texttt{OldClass} into two classes?
+
+    \vspace{0.5in}
+
+    \item (5pts) Your team decides to put \texttt{method1()} and \texttt{method2()} into a new abstract class called \texttt{ClassA}, and \texttt{method3()} into a new abstract class called \texttt{ClassB}. This decision makes \texttt{ClientA} and \texttt{ClientB} happy, but \texttt{ClientC} is not too happy. To appease \texttt{ClientC} you decide to keep the \texttt{OldClass} as a \emph{facade} so that \texttt{ClientC} does not have to modify any of its code. Draw the class diagram for the desired new setup with classes \texttt{OldClass}, \texttt{ClassA}, \texttt{ClassB}, \texttt{ConcreteClassA}, and \texttt{ConcreteClassB} and the three clients. Include pseudocode for all the methods in the class acting as the facade.
+
+    \vfill
+
+    \item (5pts) You realize that separating the implementation of the three methods into the separate classes, while doable, will take some time. However, the clients are ready to make their changes and move on. As a first step towards the goal (i.e.~the diagram above) use the adapter method so that \texttt{ClassA} and \texttt{ClassB} make use of the current implementation of the methods in \texttt{OldClass}. Draw the corresponding class diagram involving the three abstract classes from the previous part and their corresponding concrete subclasses. Include pseudocode for all the methods in the two adapter classes.
+
+    \vfill
+
+\newpage
+
+    \item (5pts) You are able to move the implementation of \texttt{method2()} and \texttt{method3()} into their respective new concrete classes with relative ease. However, \texttt{method1()} is giving you some trouble because its current implementation is unnecessarily entangled with data and methods that really belong in \texttt{ClassB}. You have a plan for solving this issue, but it will take some time. For now, \texttt{method1()} will have to rely on the implementation in \texttt{ConcreteOldClass}. Draw the updated class diagram with only \texttt{method1()} relying on an adapter. 
+
+    \vfill
+
+    \item (2pts) When will you be able to remove the \texttt{ConcreteOldClass}?
+
+    \vspace{1in}
+
+    \item (4pts) When are the clients allowed to change their dependency from \texttt{OldClass} to one of the new abstract classes? What happens if a client forgets to change a dependency from \texttt{OldClass} to \texttt{ClassA}? 
+
+    \vspace{1in}
+
+  \end{enumerate}
+
+
+\newpage
+
+
+  \item In the CoCalc folder \texttt{Adapter/String} you'll find a class called \texttt{String} which is a wrapper for the standard string class. Such wrappers are not uncommon since programmers (or large teams of programmers) often prefer different interfaces for string methods. For instance, I don't really like writing \texttt{cout << str << "$\setminus$n"} every time I want to print a string. I'd rather write \texttt{str.printLine()}. Also, the standard string class may not support methods that you commonly want to use such as splitting a string into a list of substrings.
+
+  \begin{enumerate}
+
+    \item (3pts) Is \texttt{String} an adapter or a decorator of the standard string class? Why?
+
+    \vspace{1in}
+
+    \item (15pts) Implement each of the methods declared in \texttt{String.h} that are not already properly implemented in \texttt{String.cpp}. Read the comments in \texttt{String.h} to see what each method should do. All of your implementations should be in \texttt{String.cpp}. You can modify the \texttt{Main.cpp} file to check if your implementations are working. 
+
+    If you're not sure how to get going, to get started write a stub for each method that is missing in \texttt{String.cpp} so that the program compiles. I already put a stub in for \texttt{getLength()}. After everything compiles you'll know that your stub-implementations are \emph{well-formed}. Then start replacing all your stubs (including the one I wrote) with proper implementations. 
+
+  \end{enumerate}
+
+\end{enumerate}
+
+
+\end{document}
+
