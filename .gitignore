@@ -6,6 +6,8 @@
 **/Solution/
 **/FinalPresentation/
 **/test*/
+**/test*
+
 
 # C++ specific ignores
 *.o
@@ -32,6 +34,7 @@
 *.out
 *.fdb_latexmk
 *.synctex.gz
+*.latex
 
 # Ignore backup and temporary files
 *~
