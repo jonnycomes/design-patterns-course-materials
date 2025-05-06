@@ -34,7 +34,7 @@
 *.out
 *.fdb_latexmk
 *.synctex.gz
-*.latex
+*.tex
 
 # Ignore backup and temporary files
 *~
