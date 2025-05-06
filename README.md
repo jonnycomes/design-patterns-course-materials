@@ -1,6 +1,6 @@
-# Design Patterns Course Material (C++)
+# Design Patterns Course Materials (C++)
 
-This repository contains material from a short course on **object-oriented design and design patterns in C++**, structured around the *Design Patterns: Elements of Reusable Object-Oriented Software* book by the "Gang of Four."
+This repository contains materials from a short course on **object-oriented design and design patterns in C++**, structured around the *Design Patterns: Elements of Reusable Object-Oriented Software* book by the "Gang of Four."
 
 It can serve as a resource for anyone learning design patterns with C++, especially those who want hands-on practice with code and diagrams.
 
