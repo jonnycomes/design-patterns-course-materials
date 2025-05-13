@@ -41,7 +41,7 @@ Each subdirectory contains:
 
 ## Notes on Content
 
-Most examples and exercises in the worksheets are original and designed specifically for this course. The one major exception is the **Duck Simulator Project** in `03_Project/`, which is a C++ adaptation of the well-known Java project from *Head First Design Patterns* by Freeman & Freeman.
+Most examples and exercises in the worksheets are original and designed specifically for this course. The one major exception is the **Duck Simulator Project** in `03_Project/`, which is a C++ adaptation of the Java project from *Head First Design Patterns* by Freeman & Freeman.
 
 ---
 
